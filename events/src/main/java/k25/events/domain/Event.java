@@ -24,8 +24,6 @@ public class Event {
     private String description;
     private String location;
     private String locationAddress;
-    private double longitude;
-    private double latitude;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
@@ -38,26 +36,7 @@ public class Event {
 
     @ManyToMany
     private TargetGroup targetGroup;
-
-    public Event() {
-    }
-
-    public Event(Long id, @NotEmpty(message = "Event name is required") String name, String description,
-            String location, String locationAddress, double longitude, double latitude, LocalDateTime startTime,
-            LocalDateTime endTime, Category category, Organiser organiser, TargetGroup targetGroup) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.location = location;
-        this.locationAddress = locationAddress;
-        this.longitude = longitude;
-        this.latitude = latitude;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.category = category;
-        this.organiser = organiser;
-        this.targetGroup = targetGroup;
-    }
+    
 
     public Long getId() {
         return id;
@@ -97,22 +76,6 @@ public class Event {
 
     public void setLocationAddress(String locationAddress) {
         this.locationAddress = locationAddress;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
     }
 
     public LocalDateTime getStartTime() {
@@ -155,12 +118,28 @@ public class Event {
         this.targetGroup = targetGroup;
     }
 
+    public Event(Long id, @NotEmpty(message = "Event name is required") String name, String description,
+            String location, String locationAddress, LocalDateTime startTime, LocalDateTime endTime, Category category,
+            Organiser organiser, TargetGroup targetGroup) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.location = location;
+        this.locationAddress = locationAddress;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.category = category;
+        this.organiser = organiser;
+        this.targetGroup = targetGroup;
+    }
+
+    public Event() {
+    }
+
     @Override
     public String toString() {
         return "Event [id=" + id + ", name=" + name + ", description=" + description + ", location=" + location
-                + ", locationAddress=" + locationAddress + ", longitude=" + longitude + ", latitude=" + latitude
-                + ", startTime=" + startTime + ", endTime=" + endTime + ", category=" + category + ", organiser="
-                + organiser + ", targetGroup=" + targetGroup + "]";
+                + ", locationAddress=" + locationAddress + ", startTime=" + startTime + ", endTime=" + endTime
+                + ", category=" + category + ", organiser=" + organiser + ", targetGroup=" + targetGroup + "]";
     }
-
 }
