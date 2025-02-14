@@ -3,12 +3,15 @@ package k25.events.domain;
 import java.time.LocalDateTime;
 import java.util.Locale.Category;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotEmpty;
 
@@ -26,17 +29,29 @@ public class Event {
     private String locationAddress;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
+    private Boolean approved;
+    private double ticketPrice;
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
+    @JsonIgnore
     private Category category;
 
     @ManyToOne
+    @JoinColumn(name = "organiser_id", nullable = false)
+    @JsonIgnore
     private Organiser organiser;
 
-    @ManyToMany
+    @Enumerated(EnumType.STRING)
     private TargetGroup targetGroup;
-    
+
+    // -------------- Enum --------------------------
+
+    public enum TargetGroup {
+        EVERYONE, WOMEN_AND_NON_BINARY, MEN_AND_NON_BINARY, NON_BINARY, ALL_ADULTS, YOUTH, CHILDREN
+    }
+
+    // -------------- Getters and Setters ---------------
 
     public Long getId() {
         return id;
@@ -118,9 +133,27 @@ public class Event {
         this.targetGroup = targetGroup;
     }
 
+    public Boolean getApproved() {
+        return approved;
+    }
+
+    public void setApproved(Boolean approved) {
+        this.approved = approved;
+    }
+
+    public double getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(double ticketPrice) {
+        this.ticketPrice = ticketPrice;
+    }
+
+    // ------------------ Constructor -------------------
+
     public Event(Long id, @NotEmpty(message = "Event name is required") String name, String description,
             String location, String locationAddress, LocalDateTime startTime, LocalDateTime endTime, Category category,
-            Organiser organiser, TargetGroup targetGroup) {
+            Organiser organiser, TargetGroup targetGroup, Boolean approved, double ticketPrice) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -131,15 +164,19 @@ public class Event {
         this.category = category;
         this.organiser = organiser;
         this.targetGroup = targetGroup;
+        this.approved = approved;
+        this.ticketPrice = ticketPrice;
     }
 
     public Event() {
     }
 
+    // ------------------ toString -------------------
     @Override
     public String toString() {
         return "Event [id=" + id + ", name=" + name + ", description=" + description + ", location=" + location
                 + ", locationAddress=" + locationAddress + ", startTime=" + startTime + ", endTime=" + endTime
-                + ", category=" + category + ", organiser=" + organiser + ", targetGroup=" + targetGroup + "]";
+                + ", category=" + category + ", organiser=" + organiser + ", targetGroup=" + targetGroup + ", approved="
+                + approved + ", ticketPrice=" + ticketPrice + "]";
     }
 }
