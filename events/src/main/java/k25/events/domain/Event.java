@@ -1,7 +1,6 @@
 package k25.events.domain;
 
 import java.time.LocalDateTime;
-import java.util.Locale.Category;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -151,10 +150,9 @@ public class Event {
 
     // ------------------ Constructor -------------------
 
-    public Event(Long id, @NotEmpty(message = "Event name is required") String name, String description,
+    public Event(@NotEmpty(message = "Event name is required") String name, String description,
             String location, String locationAddress, LocalDateTime startTime, LocalDateTime endTime, Category category,
             Organiser organiser, TargetGroup targetGroup, Boolean approved, double ticketPrice) {
-        this.id = id;
         this.name = name;
         this.description = description;
         this.location = location;

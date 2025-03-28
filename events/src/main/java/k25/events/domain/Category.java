@@ -27,10 +27,8 @@ public class Category {
     public Category() {
     }
 
-    public Category(Long id, @NotEmpty(message = "Category name is required") String name, List<Event> events) {
-        this.id = id;
+    public Category(@NotEmpty(message = "Category name is required") String name) {
         this.name = name;
-        this.events = events;
     }
 
     // -------------- Getters and Setters ---------------

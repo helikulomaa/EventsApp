@@ -36,14 +36,12 @@ public class Organiser {
     public Organiser() {
     }
 
-    public Organiser(Long id, @NotEmpty(message = "Organiser name is required") String name, String contcatFirstName,
-            String contactLastName, String contactEmail, List<Event> events, OrganiserType organiserType) {
-        this.id = id;
+    public Organiser(@NotEmpty(message = "Organiser name is required") String name, String contcatFirstName,
+            String contactLastName, String contactEmail, OrganiserType organiserType) {
         this.name = name;
         this.contcatFirstName = contcatFirstName;
         this.contactLastName = contactLastName;
         this.contactEmail = contactEmail;
-        this.events = events;
         this.organiserType = organiserType;
     }
 
