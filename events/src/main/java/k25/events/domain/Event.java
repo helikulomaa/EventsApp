@@ -49,7 +49,23 @@ public class Event {
     // -------------- Enum --------------------------
 
     public enum TargetGroup {
-        EVERYONE, WOMEN_AND_NON_BINARY, MEN_AND_NON_BINARY, NON_BINARY, ALL_ADULTS, YOUTH, CHILDREN
+        EVERYONE("Everyone"),
+        WOMEN_AND_NON_BINARY("Women and Non-binary"),
+        MEN_AND_NON_BINARY("Men and Non-binary"),
+        NON_BINARY("Non-binary"),
+        ALL_ADULTS("All adults"),
+        YOUTH("Youth"),
+        CHILDREN("Children");
+
+        private final String displayName;
+
+        TargetGroup(String displayName) {
+            this.displayName = displayName;
+        }
+
+        public String getDisplayName() {
+            return displayName;
+        }
     }
 
     // -------------- Getters and Setters ---------------
