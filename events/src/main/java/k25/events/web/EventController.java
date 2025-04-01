@@ -16,6 +16,7 @@ import jakarta.validation.Valid;
 import k25.events.domain.CategoryRepository;
 import k25.events.domain.Event;
 import k25.events.domain.EventRepository;
+import k25.events.domain.OrganiserRepository;
 
 @Controller
 public class EventController {
@@ -36,6 +37,9 @@ public class EventController {
     @Autowired
     private CategoryRepository crepository;
 
+    @Autowired
+    private OrganiserRepository orepository;
+
     public EventController(EventRepository repository) {
         this.eventRepository = repository;
     }
@@ -51,6 +55,8 @@ public class EventController {
     public String addEvent(Model model) {
         model.addAttribute("event", new Event());
         model.addAttribute("categories", crepository.findAll());
+        model.addAttribute("organisers", orepository.findAll());
+        model.addAttribute("targetGroups", Event.TargetGroup.values());
         return "addevent";
     }
 
