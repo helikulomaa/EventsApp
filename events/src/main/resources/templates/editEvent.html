@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Edit Event</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" />
+</head>
+
+<body class="container mt-5">
+    <h1 class="mb-4">Edit Event</h1>
+
+    <form th:object="${event}" th:action="@{/edit}" action="#" method="post" class="row g-3">
+
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="col-md-6">
+            <label for="name" class="form-label">Event Name</label>
+            <input type="text" id="name" th:field="*{name}" class="form-control" required />
+        </div>
+
+        <div class="col-md-12">
+            <label for="description" class="form-label">Description</label>
+            <textarea id="description" th:field="*{description}" class="form-control" rows="3"></textarea>
+        </div>
+
+        <div class="col-md-12">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" id="location" th:field="*{location}" class="form-control" />
+        </div>
+
+        <div class="col-md-12">
+            <label for="locationAddress" class="form-label">Location Address</label>
+            <input type="text" id="locationAddress" th:field="*{locationAddress}" class="form-control" />
+        </div>
+
+        <div class="col-md-4">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" id="date" th:field="*{date}" class="form-control" required />
+        </div>
+
+        <div class="col-md-4">
+            <label for="startTime" class="form-label">Start Time</label>
+            <input type="time" id="startTime" th:field="*{startTime}" class="form-control" />
+        </div>
+
+        <div class="col-md-4">
+            <label for="endTime" class="form-label">End Time</label>
+            <input type="time" id="endTime" th:field="*{endTime}" class="form-control" />
+        </div>
+
+        <div class="col-md-6">
+            <label for="category" class="form-label">Category</label>
+            <select id="category" th:field="*{category.id}" class="form-select">
+                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}">
+                </option>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label for="organiser" class="form-label">Organiser</label>
+            <select id="organiser" th:field="*{organiser.id}" class="form-select">
+                <option th:each="organiser : ${organisers}" th:value="${organiser.id}" th:text="${organiser.name}">
+                </option>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label for="targetGroup" class="form-label">Target Group</label>
+            <select id="targetGroup" th:field="*{targetGroup}" class="form-select">
+                <option value="EVERYONE">Everyone</option>
+                <option value="WOMEN_AND_NON_BINARY">Women and Non-binary</option>
+                <option value="MEN_AND_NON_BINARY">Men and Non-binary</option>
+                <option value="NON_BINARY">Non-binary</option>
+                <option value="ALL_ADULTS">All adults</option>
+                <option value="YOUTH">Youth</option>
+                <option value="CHILDREN">Children</option>
+            </select>
+        </div>
+
+
+        <div class="col-md-6">
+            <label for="approved" class="form-label">Approved</label>
+            <input type="checkbox" id="approved" th:field="*{approved}" class="form-check-input" />
+        </div>
+
+        <div class="col-md-6">
+            <label for="ticketPrice" class="form-label">Ticket Price</label>
+            <input type="number" step="0.01" id="ticketPrice" th:field="*{ticketPrice}" class="form-control" />
+        </div>
+
+        <div class="col-12 mt-4">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+
+    </form>
+
+    <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>

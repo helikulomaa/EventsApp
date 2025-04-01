@@ -80,8 +80,13 @@ public class EventController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping(value = "/edit/{id}")
     public String showEditForm(@PathVariable("id") Long eventId, Model model) {
-        model.addAttribute("event", eventRepository.findById(eventId));
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid event Id:" + eventId));
+
+        model.addAttribute("event", event);
         model.addAttribute("categories", crepository.findAll());
+        model.addAttribute("organisers", orepository.findAll());
+        model.addAttribute("targetGroups", Event.TargetGroup.values());
         return "editEvent";
     }
 
@@ -90,6 +95,8 @@ public class EventController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("event", event);
             model.addAttribute("categories", crepository.findAll());
+            model.addAttribute("organisers", orepository.findAll());
+            model.addAttribute("targetGroups", Event.TargetGroup.values());
             return "editEvent";
         }
         eventRepository.save(event);
