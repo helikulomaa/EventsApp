@@ -1,7 +1,7 @@
 package k25.events;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -88,15 +88,14 @@ public class EventsApplication {
 
 			// save a couple of events
 
-			DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
-
 			Event event1 = new Event(
 					"Queer Speed Dating",
 					"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac nunc nec nisl ultricies lacinia.",
 					"Struts Bar",
 					"Fleminginkatu 13, Helsinki",
-					LocalDateTime.parse("2025-04-23T19:00:00", formatter),
-					LocalDateTime.parse("2025-04-23T21:00:00", formatter),
+					LocalDate.parse("2025-04-23"),
+					LocalTime.parse("19:00"),
+					LocalTime.parse("21:00"),
 					category2,
 					organiser1,
 					TargetGroup.WOMEN_AND_NON_BINARY,
@@ -108,8 +107,9 @@ public class EventsApplication {
 					"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac nunc nec nisl ultricies lacinia.",
 					"Mascot Bar & Live Stage",
 					"Neljäs linja 2, Helsinki",
-					LocalDateTime.parse("2025-04-01T19:00:00", formatter),
-					LocalDateTime.parse("2025-04-01T21:00:00", formatter),
+					LocalDate.parse("2025-04-01"),
+					LocalTime.parse("19:00"),
+					LocalTime.parse("21:00"),
 					category3,
 					organiser2,
 					TargetGroup.ALL_ADULTS,
@@ -121,8 +121,9 @@ public class EventsApplication {
 					"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac nunc nec nisl ultricies lacinia.",
 					"Kahvila Rakastan",
 					"Mannerheimintie 13, Helsinki",
-					LocalDateTime.parse("2025-04-10T17:00:00", formatter),
-					LocalDateTime.parse("2025-04-10T19:00:00", formatter),
+					LocalDate.parse("2025-04-10"),
+					LocalTime.parse("17:00"),
+					LocalTime.parse("19:00"),
 					category2,
 					organiser4,
 					TargetGroup.ALL_ADULTS,
@@ -134,8 +135,9 @@ public class EventsApplication {
 					"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac nunc nec nisl ultricies lacinia.",
 					"Helsinki Priden yhteisötila",
 					"Tallberginkatu 1, Helsinki",
-					LocalDateTime.parse("2025-04-28T18:00:00", formatter),
-					LocalDateTime.parse("2025-04-28T20:00:00", formatter),
+					LocalDate.parse("2025-04-28"),
+					LocalTime.parse("18:00"),
+					LocalTime.parse("20:00"),
 					category2,
 					organiser3,
 					TargetGroup.WOMEN_AND_NON_BINARY,

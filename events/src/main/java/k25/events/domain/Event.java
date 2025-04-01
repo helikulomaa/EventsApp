@@ -1,6 +1,7 @@
 package k25.events.domain;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,8 +27,9 @@ public class Event {
     private String description;
     private String location;
     private String locationAddress;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private LocalDate date;
+    private LocalTime startTime;
+    private LocalTime endTime;
     private Boolean approved;
     private double ticketPrice;
 
@@ -92,19 +94,27 @@ public class Event {
         this.locationAddress = locationAddress;
     }
 
-    public LocalDateTime getStartTime() {
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
-    public LocalDateTime getEndTime() {
+    public LocalTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalDateTime endTime) {
+    public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
 
@@ -151,12 +161,14 @@ public class Event {
     // ------------------ Constructor -------------------
 
     public Event(@NotEmpty(message = "Event name is required") String name, String description,
-            String location, String locationAddress, LocalDateTime startTime, LocalDateTime endTime, Category category,
+            String location, String locationAddress, LocalDate date, LocalTime startTime, LocalTime endTime,
+            Category category,
             Organiser organiser, TargetGroup targetGroup, Boolean approved, double ticketPrice) {
         this.name = name;
         this.description = description;
         this.location = location;
         this.locationAddress = locationAddress;
+        this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.category = category;
@@ -173,7 +185,8 @@ public class Event {
     @Override
     public String toString() {
         return "Event [id=" + id + ", name=" + name + ", description=" + description + ", location=" + location
-                + ", locationAddress=" + locationAddress + ", startTime=" + startTime + ", endTime=" + endTime
+                + ", locationAddress=" + locationAddress + ", date=" + date + ", startTime=" + startTime + ", endTime="
+                + endTime
                 + ", category=" + category + ", organiser=" + organiser + ", targetGroup=" + targetGroup + ", approved="
                 + approved + ", ticketPrice=" + ticketPrice + "]";
     }
