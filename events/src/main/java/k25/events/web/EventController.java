@@ -16,7 +16,6 @@ import jakarta.validation.Valid;
 import k25.events.domain.CategoryRepository;
 import k25.events.domain.Event;
 import k25.events.domain.EventRepository;
-import k25.events.domain.Organiser;
 import k25.events.domain.OrganiserRepository;
 
 @Controller
