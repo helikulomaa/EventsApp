@@ -25,7 +25,7 @@ public class SecurityConfig {
 	}
 
 	private static final AntPathRequestMatcher[] WHITE_LIST_URLS = {
-			new AntPathRequestMatcher("/api/events**"),
+			new AntPathRequestMatcher("/api/events/**"),
 			new AntPathRequestMatcher("/h2-console/**") };
 
 	@Bean
@@ -42,7 +42,8 @@ public class SecurityConfig {
 						.defaultSuccessUrl("/eventlist", true)
 						.permitAll())
 				.logout(logout -> logout.permitAll())
-				.csrf(csrf -> csrf.disable()); // not for production, just for development
+				.csrf(csrf -> csrf.disable())
+				.httpBasic(); // not for production, just for development
 
 		return http.build();
 	}
