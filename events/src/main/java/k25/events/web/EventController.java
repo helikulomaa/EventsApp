@@ -16,6 +16,7 @@ import jakarta.validation.Valid;
 import k25.events.domain.CategoryRepository;
 import k25.events.domain.Event;
 import k25.events.domain.EventRepository;
+import k25.events.domain.Organiser;
 import k25.events.domain.OrganiserRepository;
 
 @Controller
@@ -63,11 +64,15 @@ public class EventController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(@Valid @ModelAttribute("event") Event event, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("events", event);
+            model.addAttribute("event", event);
+            model.addAttribute("categories", crepository.findAll());
+            model.addAttribute("organisers", orepository.findAll());
+            model.addAttribute("targetGroups", Event.TargetGroup.values());
             return "addEvent";
         }
+
         eventRepository.save(event);
-        return "redirect:eventlist";
+        return "redirect:/eventlist";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

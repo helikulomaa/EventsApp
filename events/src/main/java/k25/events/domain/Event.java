@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Event {
@@ -27,6 +28,7 @@ public class Event {
     private String description;
     private String location;
     private String locationAddress;
+    @NotNull(message = "Event date is required")
     private LocalDate date;
     private LocalTime startTime;
     private LocalTime endTime;
