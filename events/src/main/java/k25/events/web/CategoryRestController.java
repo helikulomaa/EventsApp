@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import k25.events.domain.Category;
 import k25.events.domain.CategoryRepository;
-import k25.events.domain.Event;
 
 @RestController
 public class CategoryRestController {
