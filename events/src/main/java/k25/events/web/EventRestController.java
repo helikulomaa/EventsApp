@@ -71,4 +71,9 @@ public class EventRestController {
         return repository.findByTicketPrice(0.0);
     }
 
+    @GetMapping("api/events/category/{id}")
+    public List<Event> getEventsByCategory(@PathVariable("id") Long categoryId) {
+        return repository.findByCategoryId(categoryId);
+    }
+
 }
