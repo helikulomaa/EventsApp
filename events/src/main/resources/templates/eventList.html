@@ -4,7 +4,9 @@
 <head>
     <title>Event List</title>
     <meta name="viewport" http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+    <!-- <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" /> -->
+    <link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+
 </head>
 
 <body>
@@ -18,6 +20,7 @@
     </div>
     <div class="container">
         <a class="btn btn-success" href="/add" sec:authorize="hasAuthority('ADMIN')">Add New Event</a>
+        <a class="btn btn-primary" href="/events/free" style="margin-left: 10px;">Free events only</a>
     </div>
     <div class="container" style="margin-top: 50px;">
         <h1>Events</h1>

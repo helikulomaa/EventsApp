@@ -1,5 +1,7 @@
 package k25.events.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -105,6 +107,13 @@ public class EventController {
         }
         eventRepository.save(event);
         return "redirect:/eventlist";
+    }
+
+    @GetMapping("/events/free")
+    public String showFreeEvents(Model model) {
+        List<Event> freeEvents = eventRepository.findByTicketPrice(0.0);
+        model.addAttribute("events", freeEvents);
+        return "eventlist";
     }
 
 }
