@@ -5,6 +5,7 @@ import static org.springframework.security.web.util.matcher.AntPathRequestMatche
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -44,7 +45,7 @@ public class SecurityConfig {
 						.permitAll())
 				.logout(logout -> logout.permitAll())
 				.csrf(csrf -> csrf.disable())
-				.httpBasic(); // not for production, just for development
+				.httpBasic(Customizer.withDefaults()); // not for production, just for development
 
 		return http.build();
 	}
