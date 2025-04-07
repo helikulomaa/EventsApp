@@ -49,7 +49,7 @@ public class EventController {
     @RequestMapping(value = { "/", "/eventlist" })
     public String bookList(Model model) {
         model.addAttribute("events", eventRepository.findAll());
-        return "eventlist";
+        return "eventList";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -73,14 +73,14 @@ public class EventController {
         }
 
         eventRepository.save(event);
-        return "redirect:/eventlist";
+        return "redirect:/eventList";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteEvent(@PathVariable("id") Long eventId) {
         eventRepository.deleteById(eventId);
-        return "redirect:../eventlist";
+        return "redirect:../eventList";
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -106,14 +106,14 @@ public class EventController {
             return "editEvent";
         }
         eventRepository.save(event);
-        return "redirect:/eventlist";
+        return "redirect:/eventList";
     }
 
     @GetMapping("/events/free")
     public String showFreeEvents(Model model) {
         List<Event> freeEvents = eventRepository.findByTicketPrice(0.0);
         model.addAttribute("events", freeEvents);
-        return "eventlist";
+        return "eventList";
     }
 
 }
